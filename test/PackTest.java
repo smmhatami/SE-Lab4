@@ -1,8 +1,11 @@
-package test;
-
 import static org.junit.Assert.assertEquals;
 
+import Model.Delivered;
+import Model.InTransit;
+import Model.Pack;
+import Model.PackState;
 import org.junit.Test;
+
 
 public class PackTest {
     
@@ -13,7 +16,7 @@ public class PackTest {
         assertEquals(state.tellState(), "in transit");
 
         state = new Delivered();
-        assertEquals(state.tellState(), "delievred");
+        assertEquals(state.tellState(), "delivered");
     }
 
     @Test
@@ -42,7 +45,7 @@ public class PackTest {
         pack = new Pack("book", 300, state);
         state.setPack(pack);
         state.deliver();
-        assertEquals(state.tellState(), "delivered");
+        assertEquals(pack.tellState(), "delivered");
 
         state = new Delivered();
         pack = new Pack("book", 300, state);

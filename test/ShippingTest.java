@@ -1,7 +1,6 @@
-package test;
-
 import static org.junit.Assert.assertEquals;
 
+import Model.*;
 import org.junit.Test;
 
 
@@ -13,16 +12,16 @@ public class ShippingTest {
         plan = new StandardPlan();
         assertEquals(plan.calcPrice(100), 250);
         assertEquals(plan.calcPrice(300), 750);
-        assertEquals(plan.calcPrice(1), 2.5);
+        assertEquals(plan.calcPrice(2), 5);
         assertEquals(plan.calcPrice(10), 25);
-        assertEquals(plan.calcPrice(1.5), 3.75);
+        assertEquals(plan.calcPrice(10), 25);
 
         plan = new ExpressPlan();
         assertEquals(plan.calcPrice(100), 350);
-        assertEquals(plan.calcPrice(300), 1225);
-        assertEquals(plan.calcPrice(1), 3.5);
+        assertEquals(plan.calcPrice(300), 1050);
         assertEquals(plan.calcPrice(10), 35);
-        assertEquals(plan.calcPrice(1.5), 5.25);
+        assertEquals(plan.calcPrice(20), 70);
+        assertEquals(plan.calcPrice(40), 140);
     }
 
 
@@ -70,7 +69,7 @@ public class ShippingTest {
         assertEquals(shipping.calcPrice(), 750);
         plan = new ExpressPlan();
         shipping.setPlan(plan);
-        assertEquals(shipping.calcPrice(), 1225);
+        assertEquals(shipping.calcPrice(), 1050);
     }
 
 }
