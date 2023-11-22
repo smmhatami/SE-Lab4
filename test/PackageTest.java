@@ -4,11 +4,11 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-public class PackageTest {
+public class PackTest {
     
     @Test
     public void testCreateState() {
-        PackageState state;
+        PackState state;
         state  = new InTransit();
         assertEquals(state.tellState(), "in transit");
 
@@ -17,82 +17,82 @@ public class PackageTest {
     }
 
     @Test
-    public void testStateSetPackage() {
-        PackageState state;
-        Package package;
+    public void testStateSetPack() {
+        PackState state;
+        Pack pack;
 
         state  = new InTransit();
-        package = new Package("book", 300, state);
-        state.setPackage(package);
-        assertEquals(state.getPackage(), package);
+        pack = new Pack("book", 300, state);
+        state.setPack(pack);
+        assertEquals(state.getPack(), pack);
 
         state = new Delivered();
-        package = new Package("book", 300, state);
-        state.setPackage(package);
+        pack = new Pack("book", 300, state);
+        state.setPack(pack);
         state.deliver();
-        assertEquals(state.getPackage(), package);
+        assertEquals(state.getPack(), pack);
     }
 
     @Test
     public void testStateDeliver() {
-        PackageState state;
-        Package package;
+        PackState state;
+        Pack pack;
 
         state  = new InTransit();
-        package = new Package("book", 300, state);
-        state.setPackage(package);
+        pack = new Pack("book", 300, state);
+        state.setPack(pack);
         state.deliver();
         assertEquals(state.tellState(), "delivered");
 
         state = new Delivered();
-        package = new Package("book", 300, state);
-        state.setPackage(package);
+        pack = new Pack("book", 300, state);
+        state.setPack(pack);
         state.deliver();
         assertEquals(state.tellState(), "delivered");
     }
 
     @Test
-    public void testCreatePackage() {
-        PackageState state = new InTransit();
-        Package package = new Package("paper", 100, state);
-        assertEquals(package.tellState(), "in transit");
-        assertEquals(package.getName(), "paper");
-        assertEquals(package.getWeight(), 100);
+    public void testCreatePack() {
+        PackState state = new InTransit();
+        Pack pack = new Pack("paper", 100, state);
+        assertEquals(pack.tellState(), "in transit");
+        assertEquals(pack.getName(), "paper");
+        assertEquals(pack.getWeight(), 100);
 
         state = new Delivered();
-        package = new Package("book", 300, state);
-        assertEquals(package.tellState(), "delivered");
-        assertEquals(package.getName(), "book");
-        assertEquals(package.getWeight(), 300);
+        pack = new Pack("book", 300, state);
+        assertEquals(pack.tellState(), "delivered");
+        assertEquals(pack.getName(), "book");
+        assertEquals(pack.getWeight(), 300);
     }
 
     @Test
-    public void testPackageChangeState() {
-        PackageState inTransit = new InTransit();
-        PackageState delievred = new Delivered();
-        Package package = new Package("paper", 100, inTransit);
-        package.changeState(delievred);
-        assertEquals(package.tellState(), "delivered");
-        package.changeState(inTransit);
-        assertEquals(package.tellState(), "in transit");
+    public void testPackChangeState() {
+        PackState inTransit = new InTransit();
+        PackState delievred = new Delivered();
+        Pack pack = new Pack("paper", 100, inTransit);
+        pack.changeState(delievred);
+        assertEquals(pack.tellState(), "delivered");
+        pack.changeState(inTransit);
+        assertEquals(pack.tellState(), "in transit");
     }
 
     @Test
-    public void testPackageDeliver() {
-        PackageState state;
-        Package package;
+    public void testPackDeliver() {
+        PackState state;
+        Pack pack;
 
         state  = new InTransit();
-        package = new Package("book", 300, state);
-        state.setPackage(package);
-        package.deliver();
-        assertEquals(package.tellState(), "delivered");
+        pack = new Pack("book", 300, state);
+        state.setPack(pack);
+        pack.deliver();
+        assertEquals(pack.tellState(), "delivered");
 
         state = new Delivered();
-        package = new Package("book", 300, state);
-        state.setPackage(package);
-        package.deliver();
-        assertEquals(package.tellState(), "delivered");
+        pack = new Pack("book", 300, state);
+        state.setPack(pack);
+        pack.deliver();
+        assertEquals(pack.tellState(), "delivered");
     }
 
 
