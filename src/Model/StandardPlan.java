@@ -8,4 +8,9 @@ public class StandardPlan implements ShippingPlan {
     public int calcPrice(double weight) {
         return (int) (2.5*weight);
     }
+
+    @Override
+    public String toString() {
+        return "Standard";
+    }
 }
